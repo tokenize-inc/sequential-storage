@@ -730,7 +730,7 @@ impl<const N: usize> Key for [u8; N] {
 ///
 /// It also carries a lifetime so that zero-copy deserialization is supported.
 /// Zero-copy serialization is not supported due to technical restrictions.
-pub trait Value<'a> {
+pub trait Value<'a>: Sync {
     /// Serialize the value into the given buffer. If everything went ok, this function returns the length
     /// of the used part of the buffer.
     fn serialize_into(&self, buffer: &mut [u8]) -> Result<usize, SerializationError>;
